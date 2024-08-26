@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e09ec93a-bb44-4fdf-9978-4dc136e89310</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CrossCuttingConcerns\**" />
+    <Compile Remove="Infraestructure\Identity\**" />
+    <Compile Remove="Infraestructure\Migrations\**" />
+    <Content Remove="CrossCuttingConcerns\**" />
+    <Content Remove="Infraestructure\Identity\**" />
+    <Content Remove="Infraestructure\Migrations\**" />
+    <EmbeddedResource Remove="CrossCuttingConcerns\**" />
+    <EmbeddedResource Remove="Infraestructure\Identity\**" />
+    <EmbeddedResource Remove="Infraestructure\Migrations\**" />
+    <None Remove="CrossCuttingConcerns\**" />
+    <None Remove="Infraestructure\Identity\**" />
+    <None Remove="Infraestructure\Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\SmartTaskApp.CommonDb\SmartTaskApp.CommonDb.csproj" />
+    <ProjectReference Include="..\..\Common\SmartTaskApp.CommonLib\SmartTaskApp.CommonLib.csproj" />
+  </ItemGroup>
+</Project>

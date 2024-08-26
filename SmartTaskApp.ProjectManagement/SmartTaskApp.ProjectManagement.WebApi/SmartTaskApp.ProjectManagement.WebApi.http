@@ -1,0 +1,6 @@
+@SmartTaskApp.ProjectManagement.WebApi_HostAddress = http://localhost:5018
+
+GET {{SmartTaskApp.ProjectManagement.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

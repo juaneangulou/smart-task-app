@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.Auth.WebApi", "SmartTaskApp.Auth\SmartTaskApp.Auth.WebApi\SmartTaskApp.Auth.WebApi.csproj", "{29693A3C-A696-44D9-8FEA-A475795733E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth Service", "Auth Service", "{FCE5A39D-5E8D-49CA-A90C-4A302C4B009F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.Auth.Tests", "SmartTaskApp.Auth\SmartTaskApp.Auth.Tests\SmartTaskApp.Auth.Tests.csproj", "{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.Auth.IntegrationTests", "SmartTaskApp.Auth\SmartTaskApp.Auth.IntegrationTests\SmartTaskApp.Auth.IntegrationTests.csproj", "{336D6A48-4BF3-4EFA-95C0-567340C4FF48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task Management Service", "Task Management Service", "{C34E3F91-137C-43C9-8CDF-EF559C285A1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.TaskManagement.WebApi", "SmartTaskApp.TaskManagement\SmartTaskApp.TaskManagement.WebApi\SmartTaskApp.TaskManagement.WebApi.csproj", "{71780C11-1684-4619-A387-3B148324200F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLibs", "CommonLibs", "{AD01C718-AE56-4770-8D3A-C56189BD6E9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.CommonLib", "Common\SmartTaskApp.CommonLib\SmartTaskApp.CommonLib.csproj", "{64822F43-E6BB-4F74-82A7-85D196BE0399}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Management Service", "Project Management Service", "{0E67CC92-00BF-429A-9DB2-64B26B505FFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.ProjectManagement.WebApi", "SmartTaskApp.ProjectManagement\SmartTaskApp.ProjectManagement.WebApi\SmartTaskApp.ProjectManagement.WebApi.csproj", "{48E15BEA-DE22-48C5-B35C-895FDD84811F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification Service", "Notification Service", "{8B21DB97-BA58-4FA8-87D2-5202382274C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.Notifications.WebApi", "SmartTaskApp.Notifications\SmartTaskApp.Notifications.WebApi\SmartTaskApp.Notifications.WebApi.csproj", "{1E45BF40-52D1-4901-BF54-1AA82E07009D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.CommonDb", "Common\SmartTaskApp.CommonDb\SmartTaskApp.CommonDb.csproj", "{9A946831-7C17-4924-8C5E-388AC57ADE25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29693A3C-A696-44D9-8FEA-A475795733E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29693A3C-A696-44D9-8FEA-A475795733E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29693A3C-A696-44D9-8FEA-A475795733E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29693A3C-A696-44D9-8FEA-A475795733E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336D6A48-4BF3-4EFA-95C0-567340C4FF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336D6A48-4BF3-4EFA-95C0-567340C4FF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336D6A48-4BF3-4EFA-95C0-567340C4FF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336D6A48-4BF3-4EFA-95C0-567340C4FF48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71780C11-1684-4619-A387-3B148324200F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71780C11-1684-4619-A387-3B148324200F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71780C11-1684-4619-A387-3B148324200F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71780C11-1684-4619-A387-3B148324200F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64822F43-E6BB-4F74-82A7-85D196BE0399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64822F43-E6BB-4F74-82A7-85D196BE0399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64822F43-E6BB-4F74-82A7-85D196BE0399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64822F43-E6BB-4F74-82A7-85D196BE0399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E15BEA-DE22-48C5-B35C-895FDD84811F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E15BEA-DE22-48C5-B35C-895FDD84811F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E15BEA-DE22-48C5-B35C-895FDD84811F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E15BEA-DE22-48C5-B35C-895FDD84811F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E45BF40-52D1-4901-BF54-1AA82E07009D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E45BF40-52D1-4901-BF54-1AA82E07009D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E45BF40-52D1-4901-BF54-1AA82E07009D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E45BF40-52D1-4901-BF54-1AA82E07009D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29693A3C-A696-44D9-8FEA-A475795733E5} = {FCE5A39D-5E8D-49CA-A90C-4A302C4B009F}
+		{8A1F79D2-7B6F-4F3B-81B4-C6BE683EE718} = {FCE5A39D-5E8D-49CA-A90C-4A302C4B009F}
+		{336D6A48-4BF3-4EFA-95C0-567340C4FF48} = {FCE5A39D-5E8D-49CA-A90C-4A302C4B009F}
+		{71780C11-1684-4619-A387-3B148324200F} = {C34E3F91-137C-43C9-8CDF-EF559C285A1F}
+		{64822F43-E6BB-4F74-82A7-85D196BE0399} = {AD01C718-AE56-4770-8D3A-C56189BD6E9A}
+		{48E15BEA-DE22-48C5-B35C-895FDD84811F} = {0E67CC92-00BF-429A-9DB2-64B26B505FFD}
+		{1E45BF40-52D1-4901-BF54-1AA82E07009D} = {8B21DB97-BA58-4FA8-87D2-5202382274C2}
+		{9A946831-7C17-4924-8C5E-388AC57ADE25} = {AD01C718-AE56-4770-8D3A-C56189BD6E9A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11758155-5AC3-4614-95B2-5B31CDCD20C6}
+	EndGlobalSection
+EndGlobal
