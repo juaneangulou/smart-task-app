@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using SmartTaskApp.CommonDb;
 using SmartTaskApp.CommonDb.Infraestructure.SeedData;
 
-namespace SmartTaskApp.Auth.IntegrationTests
+namespace SmartTaskApp.TaskManagement.IntegrationTests
 {
     public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
     {

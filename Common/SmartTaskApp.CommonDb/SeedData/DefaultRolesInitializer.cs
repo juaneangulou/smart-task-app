@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace SmartTaskApp.Auth.WebApi.Infraestructure.SeedData
+namespace SmartTaskApp.CommonDb.Infraestructure.SeedData
 {
     public class DefaultRolesInitializer
     {

@@ -13,21 +13,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.Auth.Integrati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task Management Service", "Task Management Service", "{C34E3F91-137C-43C9-8CDF-EF559C285A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.TaskManagement.WebApi", "SmartTaskApp.TaskManagement\SmartTaskApp.TaskManagement.WebApi\SmartTaskApp.TaskManagement.WebApi.csproj", "{71780C11-1684-4619-A387-3B148324200F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.TaskManagement.WebApi", "SmartTaskApp.TaskManagement\SmartTaskApp.TaskManagement.WebApi\SmartTaskApp.TaskManagement.WebApi.csproj", "{71780C11-1684-4619-A387-3B148324200F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLibs", "CommonLibs", "{AD01C718-AE56-4770-8D3A-C56189BD6E9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.CommonLib", "Common\SmartTaskApp.CommonLib\SmartTaskApp.CommonLib.csproj", "{64822F43-E6BB-4F74-82A7-85D196BE0399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.CommonLib", "Common\SmartTaskApp.CommonLib\SmartTaskApp.CommonLib.csproj", "{64822F43-E6BB-4F74-82A7-85D196BE0399}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Management Service", "Project Management Service", "{0E67CC92-00BF-429A-9DB2-64B26B505FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.ProjectManagement.WebApi", "SmartTaskApp.ProjectManagement\SmartTaskApp.ProjectManagement.WebApi\SmartTaskApp.ProjectManagement.WebApi.csproj", "{48E15BEA-DE22-48C5-B35C-895FDD84811F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.ProjectManagement.WebApi", "SmartTaskApp.ProjectManagement\SmartTaskApp.ProjectManagement.WebApi\SmartTaskApp.ProjectManagement.WebApi.csproj", "{48E15BEA-DE22-48C5-B35C-895FDD84811F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification Service", "Notification Service", "{8B21DB97-BA58-4FA8-87D2-5202382274C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.Notifications.WebApi", "SmartTaskApp.Notifications\SmartTaskApp.Notifications.WebApi\SmartTaskApp.Notifications.WebApi.csproj", "{1E45BF40-52D1-4901-BF54-1AA82E07009D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.Notifications.WebApi", "SmartTaskApp.Notifications\SmartTaskApp.Notifications.WebApi\SmartTaskApp.Notifications.WebApi.csproj", "{1E45BF40-52D1-4901-BF54-1AA82E07009D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.CommonDb", "Common\SmartTaskApp.CommonDb\SmartTaskApp.CommonDb.csproj", "{9A946831-7C17-4924-8C5E-388AC57ADE25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTaskApp.CommonDb", "Common\SmartTaskApp.CommonDb\SmartTaskApp.CommonDb.csproj", "{9A946831-7C17-4924-8C5E-388AC57ADE25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.TaskManagement.UnitTests", "SmartTaskApp.TaskManagement\SmartTaskApp.TaskManagement.UnitTests\SmartTaskApp.TaskManagement.UnitTests.csproj", "{899F54F0-F206-49DE-B717-D728E8712405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.TaskManagement.IntegrationTests", "SmartTaskApp.TaskManagement\SmartTaskApp.TaskManagement.IntegrationTests\SmartTaskApp.TaskManagement.IntegrationTests.csproj", "{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaskApp.Notifications.UnitTests", "SmartTaskApp.Notifications\SmartTaskApp.Notifications.UnitTests\SmartTaskApp.Notifications.UnitTests.csproj", "{F45FE253-4526-4C17-A81E-542FA9F27FD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +73,18 @@ Global
 		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A946831-7C17-4924-8C5E-388AC57ADE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{899F54F0-F206-49DE-B717-D728E8712405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899F54F0-F206-49DE-B717-D728E8712405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899F54F0-F206-49DE-B717-D728E8712405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899F54F0-F206-49DE-B717-D728E8712405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45FE253-4526-4C17-A81E-542FA9F27FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45FE253-4526-4C17-A81E-542FA9F27FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45FE253-4526-4C17-A81E-542FA9F27FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45FE253-4526-4C17-A81E-542FA9F27FD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +98,9 @@ Global
 		{48E15BEA-DE22-48C5-B35C-895FDD84811F} = {0E67CC92-00BF-429A-9DB2-64B26B505FFD}
 		{1E45BF40-52D1-4901-BF54-1AA82E07009D} = {8B21DB97-BA58-4FA8-87D2-5202382274C2}
 		{9A946831-7C17-4924-8C5E-388AC57ADE25} = {AD01C718-AE56-4770-8D3A-C56189BD6E9A}
+		{899F54F0-F206-49DE-B717-D728E8712405} = {C34E3F91-137C-43C9-8CDF-EF559C285A1F}
+		{471BBAE4-88CA-4843-B4A6-C3C16DF0D6A5} = {C34E3F91-137C-43C9-8CDF-EF559C285A1F}
+		{F45FE253-4526-4C17-A81E-542FA9F27FD4} = {8B21DB97-BA58-4FA8-87D2-5202382274C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11758155-5AC3-4614-95B2-5B31CDCD20C6}

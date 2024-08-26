@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SmartTaskApp.Auth.WebApi.Configurations;
-using SmartTaskApp.Auth.WebApi.Infraestructure.SeedData;
 using SmartTaskApp.CommonDb;
 using SmartTaskApp.CommonDb.Configurations;
+using SmartTaskApp.CommonDb.Infraestructure.SeedData;
 using SmartTaskApp.CommonLib.Middlewares;
 using SmartTaskApp.CommonLib.Shared;
 
