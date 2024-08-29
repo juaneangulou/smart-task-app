@@ -1,0 +1,92 @@
+name: CI/CD SmartTaskApp backend
+
+on:
+  push:
+    branches: ["dev", "stg", "main"]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Manual workflow dispatch'
+        required: true
+        default: 'Reason to run the workflow'
+
+env:
+  APP_NAME: SmartTaskApp-backend
+  ECR_REGISTRY: ${{ vars.ECR_NAME }}
+  auth-service: SmartTaskApp-backend
+  EKS_NAMESPACE: services
+  IMAGE_TAG: ${{ github.sha }}  
+  EKS_CLUSTER_NAME: ${{ vars.EKS_CLUSTER_NAME }}
+  Development: ${{ vars.Development }}
+  DbConnection: ${{ vars.DbConnection }}
+  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: 
+      name: ${{ github.ref_name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}    
+        
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1     
+        
+      - name: Build, tag, and push image to Amazon ECR
+        working-directory: ./
+        run: |
+          docker build -t $ECR_REGISTRY/$auth-service:$IMAGE_TAG . -f ./Dockerfile 
+          docker push $ECR_REGISTRY/$auth-service:$IMAGE_TAG
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: 
+      name: ${{ github.ref_name }}
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Replace tokens
+        uses: cschleiden/replace-tokens@v1.2
+        with:
+          files: '["k8s/*.yml","k8s/cronjobs/*.yml"]'
+ 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Configure kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      - name: Set up kubeconfig
+        id: kubeconfig-context
+        run: |
+          aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }}  --region ${{ vars.AWS_REGION }}
+
+      - name: Deploy Configmap to EKS
+        working-directory: ./  
+        run: kubectl apply -f ./k8s/configmap.yml
+
+      - name: Deploy Service to EKS
+        working-directory: ./
+        run: kubectl apply -f ./k8s/service.yml 
+        
+      - name: Deploy App to EKS
+        working-directory: ./
+        run: kubectl apply -f ./k8s/deployment.yml 
