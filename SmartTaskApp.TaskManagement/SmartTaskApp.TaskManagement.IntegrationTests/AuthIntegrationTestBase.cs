@@ -1,26 +1,22 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartTaskApp.Auth.WebApi;
-using SmartTaskApp.Auth.WebApi.Configurations;
 using SmartTaskApp.CommonDb;
-using SmartTaskApp.CommonDb.Entities;
 using SmartTaskApp.CommonDb.Infraestructure.SeedData;
-using SmartTaskApp.CommonLib.Shared;
+using System.Net.Http.Json;
 
 namespace SmartTaskApp.Auth.IntegrationTests
 {
-    public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
+    public class AuthIntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
     {
-        protected readonly HttpClient TestClient;
-        private readonly WebApplicationFactory<Program> _factory;
+        public readonly HttpClient AuthClient;
+        private readonly WebApplicationFactory<Program> _authFactory;
 
-        public IntegrationTestBase(WebApplicationFactory<Program> factory)
+        public AuthIntegrationTestBase(WebApplicationFactory<Program> factory)
         {
-            _factory = factory.WithWebHostBuilder(builder =>
+            _authFactory = factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureAppConfiguration((context, config) =>
                 {
@@ -35,7 +31,6 @@ namespace SmartTaskApp.Auth.IntegrationTests
                     {
                         services.Remove(descriptor);
                     }
-
 
                     services.AddDbContext<SmartTaskAppDbContext>(options =>
                     {
@@ -54,7 +49,27 @@ namespace SmartTaskApp.Auth.IntegrationTests
                 });
             });
 
-            TestClient = _factory.CreateClient();
+            AuthClient = _authFactory.CreateClient();
+        }
+
+        public async Task<string> GetAuthTokenAsync()
+        {
+            var loginRequest = new
+            {
+                Username = "testuser",
+                Password = "Test@123"
+            };
+
+            var response = await AuthClient.PostAsJsonAsync("/api/auth/login", loginRequest);
+            response.EnsureSuccessStatusCode();
+
+            var authResponse = await response.Content.ReadFromJsonAsync<AuthResponse>();
+            return authResponse.Token;
+        }
+
+        public class AuthResponse
+        {
+            public string Token { get; set; }
         }
     }
 }

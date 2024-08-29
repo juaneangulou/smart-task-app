@@ -7,10 +7,19 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="AuthIntegrationTestBase.cs" />
+	  <Compile Remove="CustomWebApplicationFactory.cs" />
+	  <Compile Remove="IntegrationTestBase.cs" />
+	  <Compile Remove="TaskManagementIntegrationTestBase.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="coverlet.collector" Version="6.0.0" />
+		<PackageReference Include="FluentAssertions" Version="6.12.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
@@ -24,6 +33,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Common\SmartTaskApp.CommonDb\SmartTaskApp.CommonDb.csproj" />
+		<ProjectReference Include="..\..\SmartTaskApp.Auth\SmartTaskApp.Auth.WebApi\SmartTaskApp.Auth.WebApi.csproj" />
 		<ProjectReference Include="..\SmartTaskApp.TaskManagement.WebApi\SmartTaskApp.TaskManagement.WebApi.csproj" />
 	</ItemGroup>
 	<ItemGroup>

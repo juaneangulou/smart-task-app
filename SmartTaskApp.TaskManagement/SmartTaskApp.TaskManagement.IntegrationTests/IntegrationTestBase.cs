@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using SmartTaskApp.CommonDb;
 using SmartTaskApp.CommonDb.Infraestructure.SeedData;
 
@@ -36,15 +35,15 @@ namespace SmartTaskApp.TaskManagement.IntegrationTests
                         options.UseInMemoryDatabase("TestDb");
                     });
 
-                    var sp = services.BuildServiceProvider();
-                    using (var scope = sp.CreateScope())
-                    {
-                        var scopedServices = scope.ServiceProvider;
-                        var db = scopedServices.GetRequiredService<SmartTaskAppDbContext>();
-                        await DefaultRolesInitializer.Initialize(scopedServices);
+                    //    var sp = services.BuildServiceProvider();
+                    //    using (var scope = sp.CreateScope())
+                    //    {
+                    //        var scopedServices = scope.ServiceProvider;
+                    //        var db = scopedServices.GetRequiredService<SmartTaskAppDbContext>();
+                    //        await DefaultRolesInitializer.Initialize(scopedServices);
 
-                        db.Database.EnsureCreated();
-                    }
+                    //        db.Database.EnsureCreated();
+                    //    }
                 });
             });
 

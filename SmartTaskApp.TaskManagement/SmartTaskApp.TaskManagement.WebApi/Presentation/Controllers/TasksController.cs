@@ -13,11 +13,11 @@ namespace SmartTaskApp.TaskManagement.WebApi.Presentation.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
-    public class TaskController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public TaskController(IMediator mediator)
+        public TasksController(IMediator mediator)
         {
             _mediator = mediator;
         }

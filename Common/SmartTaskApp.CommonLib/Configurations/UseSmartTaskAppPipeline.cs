@@ -12,7 +12,8 @@ namespace SmartTaskApp.CommonLib.Configurations
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            app.UseHttpsRedirection();
+            //TODO: Disable  just for  docker container
+            // app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();

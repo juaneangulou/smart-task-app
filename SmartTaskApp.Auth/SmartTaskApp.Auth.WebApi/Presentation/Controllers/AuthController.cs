@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartTaskApp.Auth.WebApi.Application.Commands.DeleteUser;
+using SmartTaskApp.Auth.WebApi.Application.Commands.GeneratePassword;
 using SmartTaskApp.Auth.WebApi.Application.Commands.LoginUser;
 using SmartTaskApp.Auth.WebApi.Application.Commands.MakeAdmin;
 using SmartTaskApp.Auth.WebApi.Application.Commands.RegisterUser;
@@ -58,6 +59,12 @@ namespace SmartTaskApp.Auth.WebApi.Presentation.Controllers
             var command = new DeleteUserCommand { UserId = userId };
             var result = await _mediator.Send(command);
             return result ? Ok() : BadRequest("Failed to delete user.");
+        }
+        [HttpPost("generate-reset-password-token")]
+        public async Task<IActionResult> GenerateResetPasswordToken([FromBody] GeneratePasswordResetTokenCommand command)
+        {
+            var token = await _mediator.Send(command);
+            return Ok(new { ResetToken = token });
         }
     }
 }

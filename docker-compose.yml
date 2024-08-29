@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  SmartTaskDb:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: smarttask_db
+      POSTGRES_USER: SmartTaskAppAdmin
+      POSTGRES_PASSWORD: Sm@rtt@ks2024
+    ports:
+      - "55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - smarttask-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smarttask_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth-service:
+    image: auth-service:latest
+    build:
+      context: .
+      dockerfile: SmartTaskApp.Auth/SmartTaskApp.Auth.WebApi/Dockerfile
+    ports:
+      - "55433:80"
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=SmartTaskAppAdmin;Password=Sm@rtt@ks2024
+      - SmartTaskDbConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=smarttask_db;Password=Sm@rtt@ks2024
+      - JwtConfigSecret=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY=
+      - Jwt__Key=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY
+      - Jwt__Issuer=SmartTaskApp
+      - Jwt__Audience=SmartTaskAppUsers
+    depends_on:
+      SmartTaskDb:
+        condition: service_healthy
+    networks:
+      - smarttask-network
+
+  taskmanagement-service:
+    image: taskmanagement-service:latest
+    build:
+      context: .
+      dockerfile: SmartTaskApp.TaskManagement/SmartTaskApp.TaskManagement.WebApi/Dockerfile
+    ports:
+      - "55436:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=SmartTaskApp;Username=smarttask_db;Password=Sm@rtt@ks2024
+      - JwtConfigSecret=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY=
+      - Jwt__Key=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY
+      - Jwt__Issuer=SmartTaskApp
+      - Jwt__Audience=SmartTaskAppUsers
+    depends_on:
+      SmartTaskDb:
+        condition: service_healthy
+    networks:
+      - smarttask-network
+
+  projectmanagement-service:
+    image: projectmanagement-service:latest
+    build:
+      context: .
+      dockerfile: SmartTaskApp.ProjectManagement/SmartTaskApp.ProjectManagement.WebApi/Dockerfile
+    ports:
+      - "55435:80"
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=SmartTaskAppAdmin;Password=Sm@rtt@ks2024
+      - SmartTaskDbConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=smarttask_db;Password=Sm@rtt@ks2024
+      - JwtConfigSecret=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY=
+      - Jwt__Key=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY
+      - Jwt__Issuer=SmartTaskApp
+      - Jwt__Audience=SmartTaskAppUsers
+    depends_on:
+      SmartTaskDb:
+        condition: service_healthy
+    networks:
+      - smarttask-network
+
+  notifications-service:
+    image: notifications-service:latest
+    build:
+      context: .
+      dockerfile: SmartTaskApp.Notifications/SmartTaskApp.Notifications.WebApi/Dockerfile
+    ports:
+      - "55434:80"
+    environment:
+      - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=SmartTaskAppAdmin;Password=Sm@rtt@ks2024
+      - SmartTaskDbConnection=Host=SmartTaskDb;Port=5432;Database=smarttask_db;Username=smarttask_db;Password=Sm@rtt@ks2024
+      - JwtConfigSecret=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY=
+      - Jwt__Key=aXJuRm5oNHUxU2FRUkNrdzJXNlMxV3NsM0k1RVdLUnY
+      - Jwt__Issuer=SmartTaskApp
+      - Jwt__Audience=SmartTaskAppUsers
+    depends_on:
+      SmartTaskDb:
+        condition: service_healthy
+    networks:
+      - smarttask-network
+
+networks:
+  smarttask-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

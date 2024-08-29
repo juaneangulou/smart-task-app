@@ -3,34 +3,62 @@ using SmartTaskApp.CommonLib.Configurations;
 using SmartTaskApp.CommonLib.Shared;
 using SmartTaskApp.CommonDb.Configurations;
 using SmartTaskApp.TaskManagement.WebApi.Configurations;
+namespace SmartTaskApp.TaskManagement.WebApi
+{
+    public class Startup
+    {
+        private readonly IConfiguration _configuration;
 
-var builder = WebApplication.CreateBuilder(args);
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? Environment.GetEnvironmentVariable(AppConstants.SmartTaskDbConnection_Key);
-var jwtSecretKey = builder.Configuration.GetValue<string>(AppConstants.JwtSecret_key)
-                  ?? Environment.GetEnvironmentVariable(AppConstants.JwtSecret_key);
+        public void ConfigureServices(IServiceCollection services)
+        {
+            var connectionString = _configuration.GetConnectionString("DefaultConnection")
+                                 ?? Environment.GetEnvironmentVariable(AppConstants.SmartTaskDbConnection_Key);
+            var jwtSecretKey = _configuration.GetValue<string>(AppConstants.JwtSecret_key)
+                              ?? Environment.GetEnvironmentVariable(AppConstants.JwtSecret_key);
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
 
-builder.Host.UseSerilog();
-builder.Services.AddSmartTaskAppDbConfigurations(connectionString);
-builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddDIConfigurations();
-builder.Services.AddMediatRConfigurations();
+            services.AddSmartTaskAppDbConfigurations(connectionString);
+            services.AddJwtAuthentication(_configuration);
+            services.AddDIConfigurations();
+            services.AddMediatRConfigurations();
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+        }
 
-var app = builder.Build();
+        public void Configure(WebApplication app)
+        {
+            app.UseSmartTaskAppPipeline();
+            app.MapControllers();
+        }
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
+            builder.Host.UseSerilog();
 
-app.UseSmartTaskAppPipeline();
-app.MapControllers();
+            var startup = new Startup(builder.Configuration);
 
-app.Run();
+            startup.ConfigureServices(builder.Services);
 
-public partial class Program { }
+            var app = builder.Build();
+
+            startup.Configure(app);
+
+            app.Run();
+        }
+    }
+}

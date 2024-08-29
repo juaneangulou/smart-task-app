@@ -1,26 +1,22 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SmartTaskApp.Auth.WebApi;
-using SmartTaskApp.Auth.WebApi.Configurations;
 using SmartTaskApp.CommonDb;
-using SmartTaskApp.CommonDb.Entities;
-using SmartTaskApp.CommonDb.Infraestructure.SeedData;
-using SmartTaskApp.CommonLib.Shared;
+using SmartTaskApp.TaskManagement.WebApi;
+using SmartTaskApp.Auth.IntegrationTests;
 
-namespace SmartTaskApp.Auth.IntegrationTests
+namespace SmartTaskApp.TaskManagement.IntegrationTests
 {
-    public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Program>>
+    public class TaskManagementIntegrationTestBase : IClassFixture<WebApplicationFactory<Startup>>
     {
-        protected readonly HttpClient TestClient;
-        private readonly WebApplicationFactory<Program> _factory;
+        public readonly HttpClient TaskClient;
+        private readonly WebApplicationFactory<Startup> _taskFactory;
+        private readonly AuthIntegrationTestBase _authIntegrationTestBase;
 
-        public IntegrationTestBase(WebApplicationFactory<Program> factory)
+        public TaskManagementIntegrationTestBase(WebApplicationFactory<Startup> factory, AuthIntegrationTestBase authIntegrationTestBase)
         {
-            _factory = factory.WithWebHostBuilder(builder =>
+            _taskFactory = factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureAppConfiguration((context, config) =>
                 {
@@ -36,7 +32,6 @@ namespace SmartTaskApp.Auth.IntegrationTests
                         services.Remove(descriptor);
                     }
 
-
                     services.AddDbContext<SmartTaskAppDbContext>(options =>
                     {
                         options.UseInMemoryDatabase("TestDb");
@@ -47,14 +42,20 @@ namespace SmartTaskApp.Auth.IntegrationTests
                     {
                         var scopedServices = scope.ServiceProvider;
                         var db = scopedServices.GetRequiredService<SmartTaskAppDbContext>();
-                        await DefaultRolesInitializer.Initialize(scopedServices);
 
                         db.Database.EnsureCreated();
                     }
                 });
             });
 
-            TestClient = _factory.CreateClient();
+            _authIntegrationTestBase = authIntegrationTestBase;
+            TaskClient = _taskFactory.CreateClient();
+        }
+
+        protected async Task AuthenticateAsync()
+        {
+            var token = await _authIntegrationTestBase.GetAuthTokenAsync();
+            TaskClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
     }
 }

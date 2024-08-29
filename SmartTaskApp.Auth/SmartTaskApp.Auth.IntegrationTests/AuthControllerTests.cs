@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
 using System.Net;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
+using SmartTaskApp.Auth.WebApi;
+using Program = SmartTaskApp.Auth.WebApi.Program;
 
 namespace SmartTaskApp.Auth.IntegrationTests
 {

@@ -11,5 +11,6 @@ namespace SmartTaskApp.Auth.WebApi.Domain.Services
         Task<User> GetUserByIdAsync(string userId);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(string userId);
+        Task<string> GeneratePasswordResetTokenAsync(string email);
     }
 }
